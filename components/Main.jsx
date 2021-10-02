@@ -53,7 +53,7 @@ export default function Main({apiData }) {
       {console.log(apiData)}
       <Wrapper id="wrapper" data={console.log(JSON.stringify(TestData))}>
         {TestData.map((element,index)=>(
-          <Card className="rounded-3" key={`index-${index}`}>
+          <Card className="rounded-3" key={index}>
             <Image
               className="rounded-3"
               alt="image"

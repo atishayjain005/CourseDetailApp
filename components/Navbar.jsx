@@ -71,7 +71,7 @@ const AddCourse = styled.div`
 `; */
 
 export async function getSortedPostsData() {
-  let url = new URL("http://65.1.150.227:5000/api/Tests/add");
+  let url = new URL("https://65.1.150.227:5000/api/Tests/add");
   url.search = new URLSearchParams({
     categoryName: "Learn JavaScript",
     categoryDescription: "Best language",
