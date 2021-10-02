@@ -52,10 +52,11 @@ export default function Main({apiData }) {
     <Container>
       {console.log(apiData)}
       <Wrapper id="wrapper" data={console.log(JSON.stringify(TestData))}>
-        {TestData.map((element)=>(
-          <Card className="rounded-3">
+        {TestData.map((element,index)=>(
+          <Card className="rounded-3" key={`index-${index}`}>
             <Image
               className="rounded-3"
+              alt="image"
               src="/js.png"
               width="1000"
               height="600"
