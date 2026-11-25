@@ -31,7 +31,7 @@ The compatibility flag is needed by the legacy Next.js 11/Webpack toolchain on m
 
 ## Release status
 
-Not production-ready. The November 26, 2026 install audit reported **33 vulnerabilities (6 moderate, 17 high, 10 critical)** in the legacy dependency tree. A supported framework/toolchain migration needs separate scope and validation. No live successful service request has been verified, and this work does not establish backend ownership, authentication or availability.
+Not production-ready. The November 26, 2026 clean-install audit reported **32 vulnerabilities (6 moderate, 17 high, 9 critical)** in the legacy dependency tree. A supported framework/toolchain migration needs separate scope and validation. No live successful service request has been verified, and this work does not establish backend ownership, authentication or availability.
 
 No existing hosting URL was listed in repository metadata at inspection. Any integration discovered by the PR must be verified separately. Do not deploy this legacy stack to production until dependencies and service behavior are resolved. No paid infrastructure is required by the local changes.
 
