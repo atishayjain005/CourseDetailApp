@@ -1,34 +1,38 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Course Detail App
 
-## Getting Started
+A Next.js course-management interface. The existing **Add Course** action sends a fixed JavaScript sample to the original external service. Successful responses appear immediately in the current session, with search, publication status and added-order filters.
 
-First, run the development server:
+## Run locally
 
-```bash
-npm run dev
-# or
-yarn dev
+Use Node.js 22 and npm:
+
+```sh
+npm ci --ignore-scripts
+npm test
+npm run lint
+NODE_OPTIONS=--openssl-legacy-provider npm run build
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+For development: `NODE_OPTIONS=--openssl-legacy-provider npm run dev`.
+The compatibility flag is needed by the legacy Next.js 11/Webpack toolchain on modern Node. It is not a dependency-security fix.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Behavior and limitations
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+- The service is `https://65.1.150.227:5000/api/Tests/add`. Requests preserve the original POST/query-string contract. Do not use it for private information.
+- This is not a course editor or a complete catalog: there is no supplied list, update or delete API. Reloading clears the local list, and **does not delete courses on the service**.
+- Requests time out after 15 seconds. Failures never insert a course locally or retry automatically. An uncertain response may still have created a remote record; check the service before retrying.
+- Only validated name, description and publication status are displayed. Type filtering remains visibly unavailable because the contract supplies no type. Sort order is when courses were added to this page, not a server timestamp.
+- The page includes loading, empty, no-match and failure feedback, labeled native filters and a responsive grid.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Verification
 
-## Learn More
+`npm test` covers malformed data, request contract, transport/HTTP/JSON failures, timeouts, filtering, duplicate pending submissions, successful rendering and recovery without losing existing entries. All network calls in tests are mocked; tests do not create external courses. GitHub Actions runs tests, lint and the production build.
 
-To learn more about Next.js, take a look at the following resources:
+## Release status
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Not production-ready. The November 26, 2026 install audit reported **33 vulnerabilities (6 moderate, 17 high, 10 critical)** in the legacy dependency tree. A supported framework/toolchain migration needs separate scope and validation. No live successful service request has been verified, and this work does not establish backend ownership, authentication or availability.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+No existing hosting URL was listed in repository metadata at inspection. Any integration discovered by the PR must be verified separately. Do not deploy this legacy stack to production until dependencies and service behavior are resolved. No paid infrastructure is required by the local changes.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+See [the improvement register](docs/improvement-log.md) for scoped work and release follow-ups.

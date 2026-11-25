@@ -1,16 +1,19 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
-}
+html, body { padding: 0; margin: 0; font-family: system-ui, sans-serif; background: #f6f6f6; color: #212529; }
+* { box-sizing: border-box; }
+.course-page { width: 100%; min-height: 100vh; max-width: 1440px; margin: auto; padding: 2rem; }
+.course-header { display: flex; gap: 1rem; align-items: center; justify-content: space-between; flex-wrap: wrap; margin-bottom: 1rem; }
+.course-header h1 { font-weight: 700; }
+.course-filters { display: flex; align-items: flex-end; flex-wrap: wrap; gap: 1rem; padding: 1.5rem 0; }
+.course-filters label { display: flex; flex-direction: column; gap: .35rem; flex: 1 1 180px; min-width: 0; }
+.course-filters input, .course-filters select { width: 100%; padding: .6rem; border: 1px solid #657080; border-radius: .25rem; font: inherit; background: white; color: inherit; }
+.course-filters select:disabled { color: #555; background: #e9ecef; }
+#type-help { flex-basis: 100%; margin: 0; }
+.course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 1.5rem; }
+.course-card { min-width: 0; overflow: hidden; background: white; border: 1px solid #d7dce1; border-radius: .5rem; display: flex; flex-direction: column; }
+.course-card h2 { font-size: 1.3rem; padding: 1rem 1rem 0; }
+.course-card p { padding: 0 1rem; overflow-wrap: anywhere; }
+.course-card h2 { overflow-wrap: anywhere; }
+.course-status { margin-top: auto; padding: .75rem 1rem; border-top: 1px solid #d7dce1; color: #084298; }
+:focus-visible { outline: 3px solid #162f67; outline-offset: 3px; }
+[role="alert"] { border-left: 4px solid #a31515; background: #fff0f0; padding: 1rem; color: #771111; }
+@media (max-width: 480px) { .course-page { padding: 1rem; } .course-header .btn { width: 100%; } }
